@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters {
     choice(name: "Version", choices: ['1.0.0', '1.1.0', '1.2.0'], description: '')
-    booleanParam(name: 'RunTest', defaultValue: true, description: '')
+    booleanParam(name: 'executeTests', defaultValue: true, description: '')
   }
   stages {
     stage("build") {
@@ -14,7 +14,7 @@ pipeline {
     stage("deploy") {
       when {
         expression {
-          params.RunTest
+           params.executeTests
         }
       }
       steps {
